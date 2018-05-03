@@ -7,6 +7,7 @@ import (
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/davecgh/go-spew/spew"
 )
 
 // ListenAndServe is a drop-in replacement for
@@ -19,6 +20,7 @@ func ListenAndServe(addr string, h http.Handler) error {
 	}
 
 	lambda.Start(func(ctx context.Context, e events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+		spew.Dump(ctx, e)
 		r, err := NewRequest(ctx, e)
 		if err != nil {
 			return events.APIGatewayProxyResponse{}, err
