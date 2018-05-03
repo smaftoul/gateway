@@ -31,3 +31,8 @@ func ListenAndServe(addr string, h http.Handler) error {
 
 	return nil
 }
+
+func Serve(h http.Handler) error {
+	ListenAndServe("", h)
+	return nil
+}
